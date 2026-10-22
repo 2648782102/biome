@@ -3750,6 +3750,11 @@ export interface Nursery {
 	 */
 	noVueComputedPropertiesInData?: NoVueComputedPropertiesInDataConfiguration;
 	/**
+	 * Disallow calling a Vue computed property whose value is not a function.
+	 * See https://biomejs.dev/linter/rules/no-vue-computed-property-call
+	 */
+	noVueComputedPropertyCall?: NoVueComputedPropertyCallConfiguration;
+	/**
 	 * Disallow content outside of the top-level blocks in Vue components.
 	 * See https://biomejs.dev/linter/rules/no-vue-content-outside-block
 	 */
@@ -7405,6 +7410,9 @@ export type NoVueChildContentConfiguration =
 export type NoVueComputedPropertiesInDataConfiguration =
 	| RulePlainConfiguration
 	| RuleWithNoVueComputedPropertiesInDataOptions;
+export type NoVueComputedPropertyCallConfiguration =
+	| RulePlainConfiguration
+	| RuleWithNoVueComputedPropertyCallOptions;
 export type NoVueContentOutsideBlockConfiguration =
 	| RulePlainConfiguration
 	| RuleWithNoVueContentOutsideBlockOptions;
@@ -10947,6 +10955,10 @@ export interface RuleWithNoVueComputedPropertiesInDataOptions {
 	level: RulePlainConfiguration;
 	options?: NoVueComputedPropertiesInDataOptions;
 }
+export interface RuleWithNoVueComputedPropertyCallOptions {
+	level: RulePlainConfiguration;
+	options?: NoVueComputedPropertyCallOptions;
+}
 export interface RuleWithNoVueContentOutsideBlockOptions {
 	/**
 	 * Controls the applicability of the rule's fix. `none` suppresses the fix, while `safe` and `unsafe` reclassify its applicability. This setting does not change the fix itself.
@@ -14460,6 +14472,7 @@ export interface NoVueChildContentOptions {
 	additionalDirectives?: string[];
 }
 export type NoVueComputedPropertiesInDataOptions = {};
+export type NoVueComputedPropertyCallOptions = {};
 export type NoVueContentOutsideBlockOptions = {};
 export type NoVueDefineModelDefaultOptions = {};
 export type NoVueDeprecatedConfigKeyCodesOptions = {};
@@ -16786,6 +16799,7 @@ export type Category =
 	| "lint/nursery/noVueContentOutsideBlock"
 	| "lint/nursery/noVueDefineModelDefault"
 	| "lint/nursery/noVueDeprecatedConfigKeyCodes"
+	| "lint/nursery/noVueComputedPropertyCall"
 	| "lint/nursery/noVueDeprecatedDeleteSet"
 	| "lint/nursery/noVueDeprecatedDestroyedLifecycle"
 	| "lint/nursery/noVueDeprecatedEventsApi"
