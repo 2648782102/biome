@@ -3525,6 +3525,11 @@ export interface Nursery {
 	 */
 	noTanstackQueryRestDestructuring?: NoTanstackQueryRestDestructuringConfiguration;
 	/**
+	 * Disallow using the result of a TanStack Query hook as a React hook dependency.
+	 * See https://biomejs.dev/linter/rules/no-tanstack-query-unstable-deps
+	 */
+	noTanstackQueryUnstableDeps?: NoTanstackQueryUnstableDepsConfiguration;
+	/**
 	 * Disallow TanStack Query functions that don't return any data.
 	 * See https://biomejs.dev/linter/rules/no-tanstack-query-void-query-fn
 	 */
@@ -7240,6 +7245,9 @@ export type NoTailwindRestyledComponentsConfiguration =
 export type NoTanstackQueryRestDestructuringConfiguration =
 	| RulePlainConfiguration
 	| RuleWithNoTanstackQueryRestDestructuringOptions;
+export type NoTanstackQueryUnstableDepsConfiguration =
+	| RulePlainConfiguration
+	| RuleWithNoTanstackQueryUnstableDepsOptions;
 export type NoTanstackQueryVoidQueryFnConfiguration =
 	| RulePlainConfiguration
 	| RuleWithNoTanstackQueryVoidQueryFnOptions;
@@ -10654,6 +10662,10 @@ export interface RuleWithNoTailwindRestyledComponentsOptions {
 export interface RuleWithNoTanstackQueryRestDestructuringOptions {
 	level: RulePlainConfiguration;
 	options?: NoTanstackQueryRestDestructuringOptions;
+}
+export interface RuleWithNoTanstackQueryUnstableDepsOptions {
+	level: RulePlainConfiguration;
+	options?: NoTanstackQueryUnstableDepsOptions;
 }
 export interface RuleWithNoTanstackQueryVoidQueryFnOptions {
 	level: RulePlainConfiguration;
@@ -14300,6 +14312,7 @@ export interface NoTailwindRestyledComponentsOptions {
 	allow?: TailwindComponentAllowance[];
 }
 export type NoTanstackQueryRestDestructuringOptions = {};
+export type NoTanstackQueryUnstableDepsOptions = {};
 export type NoTanstackQueryVoidQueryFnOptions = {};
 export type NoTestGlobalsOptions = {};
 export type NoTestHooksOptions = {};
@@ -16648,6 +16661,7 @@ export type Category =
 	| "lint/nursery/noTailwindRestrictedClasses"
 	| "lint/nursery/noTailwindRestyledComponents"
 	| "lint/nursery/noTanstackQueryRestDestructuring"
+	| "lint/nursery/noTanstackQueryUnstableDeps"
 	| "lint/nursery/noTanstackQueryVoidQueryFn"
 	| "lint/nursery/noTestGlobals"
 	| "lint/nursery/noTestHooks"
