@@ -843,6 +843,7 @@ pub enum RuleName {
     UseTanstackQueryExhaustiveDependencies,
     UseTanstackQueryInfiniteQueryPropertyOrder,
     UseTanstackQueryMutationPropertyOrder,
+    UseTanstackQueryQueryOptions,
     UseTanstackQueryStableQueryClient,
     UseTemplate,
     UseTestHooksInOrder,
@@ -1709,6 +1710,7 @@ impl RuleName {
                 "useTanstackQueryInfiniteQueryPropertyOrder"
             }
             Self::UseTanstackQueryMutationPropertyOrder => "useTanstackQueryMutationPropertyOrder",
+            Self::UseTanstackQueryQueryOptions => "useTanstackQueryQueryOptions",
             Self::UseTanstackQueryStableQueryClient => "useTanstackQueryStableQueryClient",
             Self::UseTemplate => "useTemplate",
             Self::UseTestHooksInOrder => "useTestHooksInOrder",
@@ -2567,6 +2569,7 @@ impl RuleName {
             Self::UseTanstackQueryExhaustiveDependencies => RuleGroup::Nursery,
             Self::UseTanstackQueryInfiniteQueryPropertyOrder => RuleGroup::Nursery,
             Self::UseTanstackQueryMutationPropertyOrder => RuleGroup::Nursery,
+            Self::UseTanstackQueryQueryOptions => RuleGroup::Nursery,
             Self::UseTanstackQueryStableQueryClient => RuleGroup::Nursery,
             Self::UseTemplate => RuleGroup::Style,
             Self::UseTestHooksInOrder => RuleGroup::Style,
@@ -3442,6 +3445,7 @@ impl std::str::FromStr for RuleName {
             "useTanstackQueryMutationPropertyOrder" => {
                 Ok(Self::UseTanstackQueryMutationPropertyOrder)
             }
+            "useTanstackQueryQueryOptions" => Ok(Self::UseTanstackQueryQueryOptions),
             "useTanstackQueryStableQueryClient" => Ok(Self::UseTanstackQueryStableQueryClient),
             "useTemplate" => Ok(Self::UseTemplate),
             "useTestHooksInOrder" => Ok(Self::UseTestHooksInOrder),
