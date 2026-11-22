@@ -4043,6 +4043,11 @@ export interface Nursery {
 	 */
 	useConsistentBooleanName?: UseConsistentBooleanNameConfiguration;
 	/**
+	 * Enforce a consistent style for default-exported functions and classes.
+	 * See https://biomejs.dev/linter/rules/use-consistent-default-export-style
+	 */
+	useConsistentDefaultExportStyle?: UseConsistentDefaultExportStyleConfiguration;
+	/**
 	 * Enforce a consistent notation for font weights.
 	 * See https://biomejs.dev/linter/rules/use-consistent-font-weight-notation
 	 */
@@ -7445,6 +7450,9 @@ export type UseConsistentBlockLangConfiguration =
 export type UseConsistentBooleanNameConfiguration =
 	| RulePlainConfiguration
 	| RuleWithUseConsistentBooleanNameOptions;
+export type UseConsistentDefaultExportStyleConfiguration =
+	| RulePlainConfiguration
+	| RuleWithUseConsistentDefaultExportStyleOptions;
 export type UseConsistentFontWeightNotationConfiguration =
 	| RulePlainConfiguration
 	| RuleWithUseConsistentFontWeightNotationOptions;
@@ -11005,6 +11013,14 @@ export interface RuleWithUseConsistentBooleanNameOptions {
 	level: RulePlainConfiguration;
 	options?: UseConsistentBooleanNameOptions;
 }
+export interface RuleWithUseConsistentDefaultExportStyleOptions {
+	/**
+	 * Controls the applicability of the rule's fix. `none` suppresses the fix, while `safe` and `unsafe` reclassify its applicability. This setting does not change the fix itself.
+	 */
+	fix?: FixKind;
+	level: RulePlainConfiguration;
+	options?: UseConsistentDefaultExportStyleOptions;
+}
 export interface RuleWithUseConsistentFontWeightNotationOptions {
 	/**
 	 * Controls the applicability of the rule's fix. `none` suppresses the fix, while `safe` and `unsafe` reclassify its applicability. This setting does not change the fix itself.
@@ -14237,6 +14253,19 @@ export interface UseConsistentBooleanNameOptions {
 	 */
 	prefixes?: Record<string, boolean>;
 }
+/**
+ * Configures the required declaration style for default-exported functions and classes.
+ */
+export interface UseConsistentDefaultExportStyleOptions {
+	/**
+	 * The declaration style for default-exported classes. Default: `"inline"`.
+	 */
+	classes?: DefaultExportStyle;
+	/**
+	 * The declaration style for default-exported functions. Default: `"inline"`.
+	 */
+	functions?: DefaultExportStyle;
+}
 export interface UseConsistentFontWeightNotationOptions {
 	/**
 	 * Whether to allow the relative keywords `bolder` and `lighter` when `notation` is `"numeric"`.
@@ -15617,6 +15646,10 @@ export interface BlockLangOptions {
 	 */
 	required?: boolean;
 }
+/**
+ * Where a default-exported function or class is declared.
+ */
+export type DefaultExportStyle = "inline" | "separate" | "ignore";
 export type FontWeightNotation = "numeric" | "namedWherePossible";
 /**
  * The required form for function definitions: `"expression"` or `"declaration"`.
@@ -16191,8 +16224,6 @@ export type Category =
 	| "lint/nursery/noDynamicRequire"
 	| "lint/nursery/noEagerArrayMethodsInLoops"
 	| "lint/nursery/noEmptyObjectKeys"
-	| "lint/nursery/noTestHooks"
-	| "lint/nursery/noYamlEmptySequenceEntries"
 	| "lint/nursery/noErasingOperation"
 	| "lint/nursery/noExcessiveNestedBlocks"
 	| "lint/nursery/noExcessiveNestedCallbacks"
@@ -16295,6 +16326,7 @@ export type Category =
 	| "lint/nursery/noTanstackQueryRestDestructuring"
 	| "lint/nursery/noTanstackQueryVoidQueryFn"
 	| "lint/nursery/noTestGlobals"
+	| "lint/nursery/noTestHooks"
 	| "lint/nursery/noThisOutsideOfClass"
 	| "lint/nursery/noTripleSlashReference"
 	| "lint/nursery/noUndeclaredClasses"
@@ -16334,10 +16366,10 @@ export type Category =
 	| "lint/nursery/noVueComputedPropertiesInData"
 	| "lint/nursery/noVueDefineModelDefault"
 	| "lint/nursery/noVueDeprecatedConfigKeyCodes"
-	| "lint/nursery/noVueDeprecatedFilter"
 	| "lint/nursery/noVueDeprecatedDeleteSet"
 	| "lint/nursery/noVueDeprecatedDestroyedLifecycle"
 	| "lint/nursery/noVueDeprecatedEventsApi"
+	| "lint/nursery/noVueDeprecatedFilter"
 	| "lint/nursery/noVueDeprecatedFunctionalTemplate"
 	| "lint/nursery/noVueDeprecatedHtmlElementIs"
 	| "lint/nursery/noVueDeprecatedInlineTemplate"
@@ -16393,6 +16425,7 @@ export type Category =
 	| "lint/nursery/noYamlBooleanKeys"
 	| "lint/nursery/noYamlEmptyMapKeys"
 	| "lint/nursery/noYamlEmptyMapValues"
+	| "lint/nursery/noYamlEmptySequenceEntries"
 	| "lint/nursery/noZeroFractions"
 	| "lint/nursery/noZeroLengthUnit"
 	| "lint/nursery/useAccessorPairs"
@@ -16408,6 +16441,7 @@ export type Category =
 	| "lint/nursery/useCatchErrorName"
 	| "lint/nursery/useConsistentBlockLang"
 	| "lint/nursery/useConsistentBooleanName"
+	| "lint/nursery/useConsistentDefaultExportStyle"
 	| "lint/nursery/useConsistentFontWeightNotation"
 	| "lint/nursery/useConsistentFunctionStyle"
 	| "lint/nursery/useConsistentHeadingLevel"
