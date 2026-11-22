@@ -4159,6 +4159,11 @@ export interface Nursery {
 	 */
 	useEarlyContinue?: UseEarlyContinueConfiguration;
 	/**
+	 * Require else if when adjacent if statements compare the same value against different values.
+	 * See https://biomejs.dev/linter/rules/use-else-if
+	 */
+	useElseIf?: UseElseIfConfiguration;
+	/**
 	 * Require switch-case statements to be exhaustive.
 	 * See https://biomejs.dev/linter/rules/use-exhaustive-switch-cases
 	 */
@@ -7595,6 +7600,9 @@ export type UseDisposablesConfiguration =
 export type UseEarlyContinueConfiguration =
 	| RulePlainConfiguration
 	| RuleWithUseEarlyContinueOptions;
+export type UseElseIfConfiguration =
+	| RulePlainConfiguration
+	| RuleWithUseElseIfOptions;
 export type UseExhaustiveSwitchCasesConfiguration =
 	| RulePlainConfiguration
 	| RuleWithUseExhaustiveSwitchCasesOptions;
@@ -11286,6 +11294,14 @@ export interface RuleWithUseEarlyContinueOptions {
 	level: RulePlainConfiguration;
 	options?: UseEarlyContinueOptions;
 }
+export interface RuleWithUseElseIfOptions {
+	/**
+	 * Controls the applicability of the rule's fix. `none` suppresses the fix, while `safe` and `unsafe` reclassify its applicability. This setting does not change the fix itself.
+	 */
+	fix?: FixKind;
+	level: RulePlainConfiguration;
+	options?: UseElseIfOptions;
+}
 export interface RuleWithUseExhaustiveSwitchCasesOptions {
 	/**
 	 * Controls the applicability of the rule's fix. `none` suppresses the fix, while `safe` and `unsafe` reclassify its applicability. This setting does not change the fix itself.
@@ -14564,6 +14580,7 @@ export interface UseEarlyContinueOptions {
 	 */
 	maximumStatements?: number;
 }
+export type UseElseIfOptions = {};
 export interface UseExhaustiveSwitchCasesOptions {
 	/**
 	 * Require a `case` for each value in the union, even when the switch has a `default` clause.
@@ -16712,6 +16729,7 @@ export type Category =
 	| "lint/nursery/useDescribeFunctionTitle"
 	| "lint/nursery/useDisposables"
 	| "lint/nursery/useEarlyContinue"
+	| "lint/nursery/useElseIf"
 	| "lint/nursery/useExhaustiveSwitchCases"
 	| "lint/nursery/useExpectEqualityMatcher"
 	| "lint/nursery/useExpectToContain"
