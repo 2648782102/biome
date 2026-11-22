@@ -2974,6 +2974,11 @@ export interface Nursery {
 	 */
 	noArrayMethodsOnArguments?: NoArrayMethodsOnArgumentsConfiguration;
 	/**
+	 * Disallow the reduce() and reduceRight() array methods.
+	 * See https://biomejs.dev/linter/rules/no-array-reduce
+	 */
+	noArrayReduce?: NoArrayReduceConfiguration;
+	/**
 	 * Disallow sorting an array only to read its smallest or largest value.
 	 * See https://biomejs.dev/linter/rules/no-array-sort-for-min-max
 	 */
@@ -6884,6 +6889,9 @@ export type NoArrayForEachConfiguration =
 export type NoArrayMethodsOnArgumentsConfiguration =
 	| RulePlainConfiguration
 	| RuleWithNoArrayMethodsOnArgumentsOptions;
+export type NoArrayReduceConfiguration =
+	| RulePlainConfiguration
+	| RuleWithNoArrayReduceOptions;
 export type NoArraySortForMinMaxConfiguration =
 	| RulePlainConfiguration
 	| RuleWithNoArraySortForMinMaxOptions;
@@ -10033,6 +10041,10 @@ export interface RuleWithNoArrayForEachOptions {
 export interface RuleWithNoArrayMethodsOnArgumentsOptions {
 	level: RulePlainConfiguration;
 	options?: NoArrayMethodsOnArgumentsOptions;
+}
+export interface RuleWithNoArrayReduceOptions {
+	level: RulePlainConfiguration;
+	options?: NoArrayReduceOptions;
 }
 export interface RuleWithNoArraySortForMinMaxOptions {
 	/**
@@ -13890,6 +13902,7 @@ export type NoArgumentsCallerOrCalleeOptions = {};
 export type NoArrayDeleteOptions = {};
 export type NoArrayForEachOptions = {};
 export type NoArrayMethodsOnArgumentsOptions = {};
+export type NoArrayReduceOptions = {};
 export type NoArraySortForMinMaxOptions = {};
 export type NoAstroConflictingSetDirectivesOptions = {};
 export type NoAstroSetHtmlDirectiveOptions = {};
@@ -16442,6 +16455,7 @@ export type Category =
 	| "lint/nursery/noArrayDelete"
 	| "lint/nursery/noArrayForEach"
 	| "lint/nursery/noArrayMethodsOnArguments"
+	| "lint/nursery/noArrayReduce"
 	| "lint/nursery/noArraySortForMinMax"
 	| "lint/nursery/noAstroConflictingSetDirectives"
 	| "lint/nursery/noAstroSetHtmlDirective"
@@ -16473,8 +16487,6 @@ export type Category =
 	| "lint/nursery/noDynamicRequire"
 	| "lint/nursery/noEagerArrayMethodsInLoops"
 	| "lint/nursery/noEmptyObjectKeys"
-	| "lint/nursery/noTestHooks"
-	| "lint/nursery/noYamlEmptySequenceEntries"
 	| "lint/nursery/noErasingOperation"
 	| "lint/nursery/noExcessiveNestedBlocks"
 	| "lint/nursery/noExcessiveNestedCallbacks"
@@ -16580,6 +16592,7 @@ export type Category =
 	| "lint/nursery/noTanstackQueryRestDestructuring"
 	| "lint/nursery/noTanstackQueryVoidQueryFn"
 	| "lint/nursery/noTestGlobals"
+	| "lint/nursery/noTestHooks"
 	| "lint/nursery/noThisOutsideOfClass"
 	| "lint/nursery/noTripleSlashReference"
 	| "lint/nursery/noUndeclaredClasses"
@@ -16622,10 +16635,10 @@ export type Category =
 	| "lint/nursery/noVueComputedPropertiesInData"
 	| "lint/nursery/noVueDefineModelDefault"
 	| "lint/nursery/noVueDeprecatedConfigKeyCodes"
-	| "lint/nursery/noVueDeprecatedFilter"
 	| "lint/nursery/noVueDeprecatedDeleteSet"
 	| "lint/nursery/noVueDeprecatedDestroyedLifecycle"
 	| "lint/nursery/noVueDeprecatedEventsApi"
+	| "lint/nursery/noVueDeprecatedFilter"
 	| "lint/nursery/noVueDeprecatedFunctionalTemplate"
 	| "lint/nursery/noVueDeprecatedHtmlElementIs"
 	| "lint/nursery/noVueDeprecatedInlineTemplate"
@@ -16683,6 +16696,7 @@ export type Category =
 	| "lint/nursery/noYamlBooleanKeys"
 	| "lint/nursery/noYamlEmptyMapKeys"
 	| "lint/nursery/noYamlEmptyMapValues"
+	| "lint/nursery/noYamlEmptySequenceEntries"
 	| "lint/nursery/noZeroFractions"
 	| "lint/nursery/noZeroLengthUnit"
 	| "lint/nursery/useAccessorPairs"
