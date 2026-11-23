@@ -2954,6 +2954,11 @@ export interface Nursery {
 	 */
 	noAccidentalBitwiseOperators?: NoAccidentalBitwiseOperatorsConfiguration;
 	/**
+	 * Disallow AMD require() and define() calls.
+	 * See https://biomejs.dev/linter/rules/no-amd
+	 */
+	noAmd?: NoAmdConfiguration;
+	/**
 	 * Disallow the use of arguments.caller and arguments.callee.
 	 * See https://biomejs.dev/linter/rules/no-arguments-caller-or-callee
 	 */
@@ -6877,6 +6882,7 @@ export type UseYieldConfiguration =
 export type NoAccidentalBitwiseOperatorsConfiguration =
 	| RulePlainConfiguration
 	| RuleWithNoAccidentalBitwiseOperatorsOptions;
+export type NoAmdConfiguration = RulePlainConfiguration | RuleWithNoAmdOptions;
 export type NoArgumentsCallerOrCalleeConfiguration =
 	| RulePlainConfiguration
 	| RuleWithNoArgumentsCallerOrCalleeOptions;
@@ -10021,6 +10027,10 @@ export interface RuleWithNoAccidentalBitwiseOperatorsOptions {
 	fix?: FixKind;
 	level: RulePlainConfiguration;
 	options?: NoAccidentalBitwiseOperatorsOptions;
+}
+export interface RuleWithNoAmdOptions {
+	level: RulePlainConfiguration;
+	options?: NoAmdOptions;
 }
 export interface RuleWithNoArgumentsCallerOrCalleeOptions {
 	level: RulePlainConfiguration;
@@ -13898,6 +13908,7 @@ export type UseVueValidVPreOptions = {};
 export type UseVueValidVTextOptions = {};
 export type UseYieldOptions = {};
 export type NoAccidentalBitwiseOperatorsOptions = {};
+export type NoAmdOptions = {};
 export type NoArgumentsCallerOrCalleeOptions = {};
 export type NoArrayDeleteOptions = {};
 export type NoArrayForEachOptions = {};
@@ -16451,6 +16462,7 @@ export type Category =
 	| "lint/correctness/useVueValidVText"
 	| "lint/correctness/useYield"
 	| "lint/nursery/noAccidentalBitwiseOperators"
+	| "lint/nursery/noAmd"
 	| "lint/nursery/noArgumentsCallerOrCallee"
 	| "lint/nursery/noArrayDelete"
 	| "lint/nursery/noArrayForEach"
@@ -16487,8 +16499,6 @@ export type Category =
 	| "lint/nursery/noDynamicRequire"
 	| "lint/nursery/noEagerArrayMethodsInLoops"
 	| "lint/nursery/noEmptyObjectKeys"
-	| "lint/nursery/noTestHooks"
-	| "lint/nursery/noYamlEmptySequenceEntries"
 	| "lint/nursery/noErasingOperation"
 	| "lint/nursery/noExcessiveNestedBlocks"
 	| "lint/nursery/noExcessiveNestedCallbacks"
@@ -16594,6 +16604,7 @@ export type Category =
 	| "lint/nursery/noTanstackQueryRestDestructuring"
 	| "lint/nursery/noTanstackQueryVoidQueryFn"
 	| "lint/nursery/noTestGlobals"
+	| "lint/nursery/noTestHooks"
 	| "lint/nursery/noThisOutsideOfClass"
 	| "lint/nursery/noTripleSlashReference"
 	| "lint/nursery/noUndeclaredClasses"
@@ -16636,10 +16647,10 @@ export type Category =
 	| "lint/nursery/noVueComputedPropertiesInData"
 	| "lint/nursery/noVueDefineModelDefault"
 	| "lint/nursery/noVueDeprecatedConfigKeyCodes"
-	| "lint/nursery/noVueDeprecatedFilter"
 	| "lint/nursery/noVueDeprecatedDeleteSet"
 	| "lint/nursery/noVueDeprecatedDestroyedLifecycle"
 	| "lint/nursery/noVueDeprecatedEventsApi"
+	| "lint/nursery/noVueDeprecatedFilter"
 	| "lint/nursery/noVueDeprecatedFunctionalTemplate"
 	| "lint/nursery/noVueDeprecatedHtmlElementIs"
 	| "lint/nursery/noVueDeprecatedInlineTemplate"
@@ -16697,6 +16708,7 @@ export type Category =
 	| "lint/nursery/noYamlBooleanKeys"
 	| "lint/nursery/noYamlEmptyMapKeys"
 	| "lint/nursery/noYamlEmptyMapValues"
+	| "lint/nursery/noYamlEmptySequenceEntries"
 	| "lint/nursery/noZeroFractions"
 	| "lint/nursery/noZeroLengthUnit"
 	| "lint/nursery/useAccessorPairs"
