@@ -3069,6 +3069,11 @@ export interface Nursery {
 	 */
 	noDrizzleDbObjectInsideTransaction?: NoDrizzleDbObjectInsideTransactionConfiguration;
 	/**
+	 * Disallow two branches next to each other in an if statement from running the same code.
+	 * See https://biomejs.dev/linter/rules/no-duplicate-if-branches
+	 */
+	noDuplicateIfBranches?: NoDuplicateIfBranchesConfiguration;
+	/**
 	 * Disallow two keys with the same name inside YAML maps.
 	 * See https://biomejs.dev/linter/rules/no-duplicate-map-keys
 	 */
@@ -6946,6 +6951,9 @@ export type NoDoubleComparisonConfiguration =
 export type NoDrizzleDbObjectInsideTransactionConfiguration =
 	| RulePlainConfiguration
 	| RuleWithNoDrizzleDbObjectInsideTransactionOptions;
+export type NoDuplicateIfBranchesConfiguration =
+	| RulePlainConfiguration
+	| RuleWithNoDuplicateIfBranchesOptions;
 export type NoDuplicateMapKeysConfiguration =
 	| RulePlainConfiguration
 	| RuleWithNoDuplicateMapKeysOptions;
@@ -10145,6 +10153,10 @@ export interface RuleWithNoDoubleComparisonOptions {
 export interface RuleWithNoDrizzleDbObjectInsideTransactionOptions {
 	level: RulePlainConfiguration;
 	options?: NoDrizzleDbObjectInsideTransactionOptions;
+}
+export interface RuleWithNoDuplicateIfBranchesOptions {
+	level: RulePlainConfiguration;
+	options?: NoDuplicateIfBranchesOptions;
 }
 export interface RuleWithNoDuplicateMapKeysOptions {
 	level: RulePlainConfiguration;
@@ -13928,6 +13940,7 @@ export interface NoDrizzleDbObjectInsideTransactionOptions {
 	 */
 	drizzleObjectName?: string[];
 }
+export type NoDuplicateIfBranchesOptions = {};
 export type NoDuplicateMapKeysOptions = {};
 export interface NoDuplicateTypeConstituentsOptions {
 	/**
@@ -16480,6 +16493,7 @@ export type Category =
 	| "lint/nursery/noDrizzleDeleteWithoutWhere"
 	| "lint/nursery/noDrizzleUpdateWithoutWhere"
 	| "lint/nursery/noDuplicateFieldDefinitionNames"
+	| "lint/nursery/noDuplicateIfBranches"
 	| "lint/nursery/noDuplicateMapKeys"
 	| "lint/nursery/noDuplicateSelectors"
 	| "lint/nursery/noDuplicateTypeConstituents"
@@ -16487,8 +16501,6 @@ export type Category =
 	| "lint/nursery/noDynamicRequire"
 	| "lint/nursery/noEagerArrayMethodsInLoops"
 	| "lint/nursery/noEmptyObjectKeys"
-	| "lint/nursery/noTestHooks"
-	| "lint/nursery/noYamlEmptySequenceEntries"
 	| "lint/nursery/noErasingOperation"
 	| "lint/nursery/noExcessiveNestedBlocks"
 	| "lint/nursery/noExcessiveNestedCallbacks"
@@ -16594,6 +16606,7 @@ export type Category =
 	| "lint/nursery/noTanstackQueryRestDestructuring"
 	| "lint/nursery/noTanstackQueryVoidQueryFn"
 	| "lint/nursery/noTestGlobals"
+	| "lint/nursery/noTestHooks"
 	| "lint/nursery/noThisOutsideOfClass"
 	| "lint/nursery/noTripleSlashReference"
 	| "lint/nursery/noUndeclaredClasses"
@@ -16636,10 +16649,10 @@ export type Category =
 	| "lint/nursery/noVueComputedPropertiesInData"
 	| "lint/nursery/noVueDefineModelDefault"
 	| "lint/nursery/noVueDeprecatedConfigKeyCodes"
-	| "lint/nursery/noVueDeprecatedFilter"
 	| "lint/nursery/noVueDeprecatedDeleteSet"
 	| "lint/nursery/noVueDeprecatedDestroyedLifecycle"
 	| "lint/nursery/noVueDeprecatedEventsApi"
+	| "lint/nursery/noVueDeprecatedFilter"
 	| "lint/nursery/noVueDeprecatedFunctionalTemplate"
 	| "lint/nursery/noVueDeprecatedHtmlElementIs"
 	| "lint/nursery/noVueDeprecatedInlineTemplate"
@@ -16697,6 +16710,7 @@ export type Category =
 	| "lint/nursery/noYamlBooleanKeys"
 	| "lint/nursery/noYamlEmptyMapKeys"
 	| "lint/nursery/noYamlEmptyMapValues"
+	| "lint/nursery/noYamlEmptySequenceEntries"
 	| "lint/nursery/noZeroFractions"
 	| "lint/nursery/noZeroLengthUnit"
 	| "lint/nursery/useAccessorPairs"
