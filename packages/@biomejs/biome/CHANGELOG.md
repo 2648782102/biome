@@ -1,5 +1,15 @@
 # @biomejs/biome
 
+## 2.6.10
+
+### Patch Changes
+
+- [#12903](https://github.com/biomejs/biome/pull/12903) [`16aaa88`](https://github.com/biomejs/biome/commit/16aaa88bb3fb45d041f1efd93ebaab26159ff5d8) Thanks [@yeliex](https://github.com/yeliex)! - Added the nursery rule [`useConsistentBooleanProps`](https://biomejs.dev/linter/rules/use-consistent-boolean-props/). When enabled, it requires `<Foo bar={true} />` by default. Set `mode` to `"implicit"` to require the shorthand `<Foo bar />`.
+
+- [#13405](https://github.com/biomejs/biome/pull/13405) [`771de3e`](https://github.com/biomejs/biome/commit/771de3e3c23f44ff69c20f4dc97bc1e9e2ed8f1d) Thanks [@dyc3](https://github.com/dyc3)! - Fixed [#13392](https://github.com/biomejs/biome/issues/13392): [`useNullishCoalescing`](https://biomejs.dev/linter/rules/use-nullish-coalescing/) no longer reports `flag || other` when `flag` is a parameter whose default value removes `undefined` from its type, such as `flag: boolean | undefined = false`.
+
+- [#13418](https://github.com/biomejs/biome/pull/13418) [`4de11d2`](https://github.com/biomejs/biome/commit/4de11d24c5618dc1d79ba1236c9dd3568c2228dc) Thanks [@ematipico](https://github.com/ematipico)! - Fixed a bug where Biome couldn't properly parse Svelte `{#each}` blocks when some syntax was used to define the keys.
+
 ## 2.6.9
 
 ### Patch Changes
